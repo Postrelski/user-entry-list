@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function App() {
   const [entries, setEntries] = useState([]);
+  const [modal, setModal] = useState(false);
 
   function passData(name, age) {
     console.log(name);
@@ -20,12 +21,25 @@ function App() {
     });
   }
 
-  console.log(entries);
+  const errorCheck = (text, age) => {
+    if (text == "" || age <= 0) {
+      setModal(true);
+      return false;
+    } else {
+      setModal(false);
+    }
+    return true;
+  };
+
+  const buttonReset = () => {
+    setModal(false);
+  };
 
   return (
     <div>
-      <Entry onDataSubmit={passData} />
+      <Entry onDataSubmit={passData} onErrorCheck={errorCheck} />
       <InputForm users={entries} />
+      {modal && <ModalWindow onButtonReset={buttonReset} />}
     </div>
   );
 }

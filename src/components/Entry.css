@@ -9,4 +9,13 @@
     height: auto;
     width: 600px;
     border: 1px solid black;
+    background-color: white;
+}
+
+button{
+    border: none;
+    padding: 5px;
+    margin: 5px;
+    color: white;
+    background: purple;
 }
